@@ -1,0 +1,19 @@
+[91mPlease make sure that Redis Queue runs @ redis://127.0.0.1:11000. Redis reported error: Error 61 connecting to 127.0.0.1:11000. Connection refused.[0m
+[91mPlease make sure that Redis Queue runs @ redis://127.0.0.1:11000. Redis reported error: Error 61 connecting to 127.0.0.1:11000. Connection refused.[0m
+[91mPlease make sure that Redis Queue runs @ redis://127.0.0.1:11000. Redis reported error: Error 61 connecting to 127.0.0.1:11000. Connection refused.[0m
+2026-08-09 14:57:42,075 Worker rq:worker:f09e46410ea548158e25003944fe4a0b started with PID 51200, version 1.15.1
+2026-08-09 14:57:42,076 Subscribing to channel rq:pubsub:f09e46410ea548158e25003944fe4a0b
+2026-08-09 14:57:42,079 *** Listening on Users-makermurtaza-Desktop-EveryoneCanMake:short, Users-makermurtaza-Desktop-EveryoneCanMake:default, Users-makermurtaza-Desktop-EveryoneCanMake:long...
+2026-08-09 14:57:42,080 Cleaning registries for queue: Users-makermurtaza-Desktop-EveryoneCanMake:short
+2026-08-09 14:57:42,080 Cleaning registries for queue: Users-makermurtaza-Desktop-EveryoneCanMake:default
+2026-08-09 14:57:42,081 Cleaning registries for queue: Users-makermurtaza-Desktop-EveryoneCanMake:long
+2026-08-09 15:08:03,323 Worker rq:worker:4c7edc20b85f4268bb7ad6bbf01ccf8c started with PID 60811, version 1.15.1
+2026-08-09 15:08:03,323 Subscribing to channel rq:pubsub:4c7edc20b85f4268bb7ad6bbf01ccf8c
+2026-08-09 15:08:03,326 *** Listening on Users-makermurtaza-Desktop-EveryoneCanMake:short, Users-makermurtaza-Desktop-EveryoneCanMake:default, Users-makermurtaza-Desktop-EveryoneCanMake:long...
+2026-08-09 15:08:03,521 Worker 4c7edc20b85f4268bb7ad6bbf01ccf8c [PID 60811]: warm shut down requested
+2026-08-09 15:08:03,523 Unsubscribing from channel rq:pubsub:4c7edc20b85f4268bb7ad6bbf01ccf8c
+2026-08-09 15:12:12,792 Worker rq:worker:c7d26fa5a9764d98aba3f2e6c2989e3a started with PID 64479, version 1.15.1
+2026-08-09 15:12:12,792 Subscribing to channel rq:pubsub:c7d26fa5a9764d98aba3f2e6c2989e3a
+2026-08-09 15:12:12,793 *** Listening on Users-makermurtaza-Desktop-EveryoneCanMake:short, Users-makermurtaza-Desktop-EveryoneCanMake:default, Users-makermurtaza-Desktop-EveryoneCanMake:long...
+2026-08-09 15:12:12,926 Worker c7d26fa5a9764d98aba3f2e6c2989e3a [PID 64479]: warm shut down requested
+2026-08-09 15:12:12,927 Unsubscribing from channel rq:pubsub:c7d26fa5a9764d98aba3f2e6c2989e3a
