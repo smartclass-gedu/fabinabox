@@ -17,3 +17,29 @@
 2026-08-09 15:12:12,793 *** Listening on Users-makermurtaza-Desktop-EveryoneCanMake:short, Users-makermurtaza-Desktop-EveryoneCanMake:default, Users-makermurtaza-Desktop-EveryoneCanMake:long...
 2026-08-09 15:12:12,926 Worker c7d26fa5a9764d98aba3f2e6c2989e3a [PID 64479]: warm shut down requested
 2026-08-09 15:12:12,927 Unsubscribing from channel rq:pubsub:c7d26fa5a9764d98aba3f2e6c2989e3a
+2026-08-09 15:24:42,322 Cleaning registries for queue: Users-makermurtaza-Desktop-EveryoneCanMake:short
+2026-08-09 15:24:42,365 Cleaning registries for queue: Users-makermurtaza-Desktop-EveryoneCanMake:default
+2026-08-09 15:24:42,366 Cleaning registries for queue: Users-makermurtaza-Desktop-EveryoneCanMake:long
+2026-08-09 15:28:35,312 Worker rq:worker:f6fe8c314fad486db6d29873652d6b47 started with PID 75315, version 1.15.1
+2026-08-09 15:28:35,312 Subscribing to channel rq:pubsub:f6fe8c314fad486db6d29873652d6b47
+2026-08-09 15:28:35,316 *** Listening on Users-makermurtaza-Desktop-EveryoneCanMake:short, Users-makermurtaza-Desktop-EveryoneCanMake:default, Users-makermurtaza-Desktop-EveryoneCanMake:long...
+2026-08-09 15:28:35,518 Worker f6fe8c314fad486db6d29873652d6b47 [PID 75315]: warm shut down requested
+2026-08-09 15:28:35,520 Unsubscribing from channel rq:pubsub:f6fe8c314fad486db6d29873652d6b47
+2026-08-09 15:30:05,925 Worker f09e46410ea548158e25003944fe4a0b [PID 51200]: warm shut down requested
+2026-08-09 15:30:05,947 Unsubscribing from channel rq:pubsub:f09e46410ea548158e25003944fe4a0b
+2026-08-09 16:09:54,898 Worker rq:worker:800d09d3bf4e4004b3c69d8a6a334b56 started with PID 98957, version 1.15.1
+2026-08-09 16:09:54,899 Subscribing to channel rq:pubsub:800d09d3bf4e4004b3c69d8a6a334b56
+2026-08-09 16:09:54,910 *** Listening on Users-makermurtaza-Desktop-EveryoneCanMake:short, Users-makermurtaza-Desktop-EveryoneCanMake:default, Users-makermurtaza-Desktop-EveryoneCanMake:long...
+2026-08-09 16:09:54,911 Cleaning registries for queue: Users-makermurtaza-Desktop-EveryoneCanMake:short
+2026-08-09 16:09:54,914 Cleaning registries for queue: Users-makermurtaza-Desktop-EveryoneCanMake:default
+2026-08-09 16:09:54,915 Cleaning registries for queue: Users-makermurtaza-Desktop-EveryoneCanMake:long
+2026-08-09 16:09:55,186 Worker 800d09d3bf4e4004b3c69d8a6a334b56 [PID 98957]: warm shut down requested
+2026-08-09 16:09:55,194 Unsubscribing from channel rq:pubsub:800d09d3bf4e4004b3c69d8a6a334b56
+2026-08-09 16:10:54,358 Worker rq:worker:7bdab538c15c49f7ad106f10c67790dc started with PID 99278, version 1.15.1
+2026-08-09 16:10:54,359 Subscribing to channel rq:pubsub:7bdab538c15c49f7ad106f10c67790dc
+2026-08-09 16:10:54,364 *** Listening on Users-makermurtaza-Desktop-EveryoneCanMake:short, Users-makermurtaza-Desktop-EveryoneCanMake:default, Users-makermurtaza-Desktop-EveryoneCanMake:long...
+2026-08-09 16:10:54,365 Cleaning registries for queue: Users-makermurtaza-Desktop-EveryoneCanMake:short
+2026-08-09 16:10:54,367 Cleaning registries for queue: Users-makermurtaza-Desktop-EveryoneCanMake:default
+2026-08-09 16:10:54,368 Cleaning registries for queue: Users-makermurtaza-Desktop-EveryoneCanMake:long
+2026-08-09 16:10:54,427 Worker 7bdab538c15c49f7ad106f10c67790dc [PID 99278]: warm shut down requested
+2026-08-09 16:10:54,430 Unsubscribing from channel rq:pubsub:7bdab538c15c49f7ad106f10c67790dc

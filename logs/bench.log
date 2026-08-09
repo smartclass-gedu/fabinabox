@@ -106,3 +106,38 @@
 2026-08-09 15:18:11,224 INFO /Users/makermurtaza/.local/bin/bench new-site everyonecanmake.localhost
 2026-08-09 15:18:15,042 INFO /Users/makermurtaza/.local/bin/bench new-site everyonecanmake.localhost
 2026-08-09 15:18:28,381 INFO /Users/makermurtaza/.local/bin/bench --site everyonecanmake.localhost reinstall --yes
+2026-08-09 15:25:17,746 INFO /Users/makermurtaza/.local/bin/bench --site everyonecanmake.localhost migrate
+2026-08-09 15:28:34,622 INFO /Users/makermurtaza/.local/bin/bench start
+2026-08-09 15:28:34,947 INFO /Users/makermurtaza/.local/bin/bench socketio
+2026-08-09 15:28:34,949 INFO /Users/makermurtaza/.local/bin/bench schedule
+2026-08-09 15:28:34,951 INFO /Users/makermurtaza/.local/bin/bench watch
+2026-08-09 15:28:34,960 INFO /Users/makermurtaza/.local/bin/bench serve --port 8000
+2026-08-09 15:28:34,971 INFO /Users/makermurtaza/.local/bin/bench worker
+2026-08-09 15:30:03,430 INFO /Users/makermurtaza/.local/bin/bench --site everyonecanmake.localhost console
+2026-08-09 15:30:13,226 INFO /Users/makermurtaza/.local/bin/bench --site everyonecanmake.localhost --force install-app everyone_can_make
+2026-08-09 15:30:15,274 INFO /Users/makermurtaza/.local/bin/bench site list
+2026-08-09 15:30:19,897 INFO /Users/makermurtaza/.local/bin/bench list-sites
+2026-08-09 15:30:26,252 INFO /Users/makermurtaza/.local/bin/bench new-site everyonecanmake.localhost
+2026-08-09 15:30:39,034 INFO /Users/makermurtaza/.local/bin/bench new-site everyonecanmake.localhost
+2026-08-09 15:30:45,856 INFO /Users/makermurtaza/.local/bin/bench --site everyonecanmake.localhost install-app frappe
+2026-08-09 15:40:23,493 INFO /Users/makermurtaza/.local/bin/bench --site everyonecanmake.localhost drop-site --force --ignore-exist
+2026-08-09 15:40:40,394 INFO /Users/makermurtaza/.local/bin/bench new-site everyonecanmake.localhost --admin-password Admin@123
+2026-08-09 15:40:42,866 INFO /Users/makermurtaza/.local/bin/bench --site everyonecanmake.localhost drop-site --force
+2026-08-09 15:43:09,117 INFO /Users/makermurtaza/.local/bin/bench drop-site everyonecanmake.localhost --force
+2026-08-09 15:57:14,173 INFO /Users/makermurtaza/.local/bin/bench --site everyonecanmake.localhost install-app frappe lms everyone_can_make --force
+2026-08-09 16:03:33,882 INFO /Users/makermurtaza/.local/bin/bench --site everyonecanmake.localhost install-app frappe
+2026-08-09 16:03:38,648 INFO /Users/makermurtaza/.local/bin/bench --site everyonecanmake.localhost reinstall --yes
+2026-08-09 16:03:42,463 INFO /Users/makermurtaza/.local/bin/bench --site everyonecanmake.localhost reinstall --yes
+2026-08-09 16:04:19,531 INFO /Users/makermurtaza/.local/bin/bench --site everyonecanmake.localhost reinstall --yes
+2026-08-09 16:09:53,743 INFO /Users/makermurtaza/.local/bin/bench start
+2026-08-09 16:09:54,287 INFO /Users/makermurtaza/.local/bin/bench socketio
+2026-08-09 16:09:54,290 INFO /Users/makermurtaza/.local/bin/bench serve --port 8000
+2026-08-09 16:09:54,294 INFO /Users/makermurtaza/.local/bin/bench watch
+2026-08-09 16:09:54,295 INFO /Users/makermurtaza/.local/bin/bench schedule
+2026-08-09 16:09:54,304 INFO /Users/makermurtaza/.local/bin/bench worker
+2026-08-09 16:10:53,217 INFO /Users/makermurtaza/.local/bin/bench start
+2026-08-09 16:10:53,595 INFO /Users/makermurtaza/.local/bin/bench socketio
+2026-08-09 16:10:53,595 INFO /Users/makermurtaza/.local/bin/bench watch
+2026-08-09 16:10:53,596 INFO /Users/makermurtaza/.local/bin/bench worker
+2026-08-09 16:10:53,597 INFO /Users/makermurtaza/.local/bin/bench schedule
+2026-08-09 16:10:53,603 INFO /Users/makermurtaza/.local/bin/bench serve --port 8000

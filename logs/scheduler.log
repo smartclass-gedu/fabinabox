@@ -792,3 +792,309 @@ Traceback (most recent call last):
   File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 537, in _raise_exception
     raise exc
 frappe.exceptions.DoesNotExistError: DocType System Settings not found
+2026-08-09 15:21:44,592 ERROR scheduler Exception in Enqueue Events for Site everyonecanmake.localhost
+Traceback (most recent call last):
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 99, in enqueue_events_for_site
+    if is_scheduler_inactive():
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 143, in is_scheduler_inactive
+    if is_scheduler_disabled(verbose=verbose):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 156, in is_scheduler_disabled
+    frappe.db.get_single_value("System Settings", "enable_scheduler")
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/database/database.py", line 845, in get_single_value
+    df = frappe.get_meta(doctype).get_field(fieldname)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 1356, in get_meta
+    return frappe.model.meta.get_meta(doctype, cached=cached)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 71, in get_meta
+    meta = Meta(doctype)
+           ^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 125, in __init__
+    super().__init__("DocType", doctype)
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/document.py", line 126, in __init__
+    self.load_from_db()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 131, in load_from_db
+    super().load_from_db()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/document.py", line 179, in load_from_db
+    frappe.throw(
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 621, in throw
+    msgprint(
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 586, in msgprint
+    _raise_exception()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 537, in _raise_exception
+    raise exc
+frappe.exceptions.DoesNotExistError: DocType System Settings not found
+2026-08-09 15:22:44,628 ERROR scheduler Exception in Enqueue Events for Site everyonecanmake.localhost
+Traceback (most recent call last):
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 99, in enqueue_events_for_site
+    if is_scheduler_inactive():
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 143, in is_scheduler_inactive
+    if is_scheduler_disabled(verbose=verbose):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 156, in is_scheduler_disabled
+    frappe.db.get_single_value("System Settings", "enable_scheduler")
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/database/database.py", line 845, in get_single_value
+    df = frappe.get_meta(doctype).get_field(fieldname)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 1356, in get_meta
+    return frappe.model.meta.get_meta(doctype, cached=cached)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 71, in get_meta
+    meta = Meta(doctype)
+           ^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 125, in __init__
+    super().__init__("DocType", doctype)
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/document.py", line 126, in __init__
+    self.load_from_db()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 131, in load_from_db
+    super().load_from_db()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/document.py", line 179, in load_from_db
+    frappe.throw(
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 621, in throw
+    msgprint(
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 586, in msgprint
+    _raise_exception()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 537, in _raise_exception
+    raise exc
+frappe.exceptions.DoesNotExistError: DocType System Settings not found
+2026-08-09 15:23:44,666 ERROR scheduler Exception in Enqueue Events for Site everyonecanmake.localhost
+Traceback (most recent call last):
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 99, in enqueue_events_for_site
+    if is_scheduler_inactive():
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 143, in is_scheduler_inactive
+    if is_scheduler_disabled(verbose=verbose):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 156, in is_scheduler_disabled
+    frappe.db.get_single_value("System Settings", "enable_scheduler")
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/database/database.py", line 845, in get_single_value
+    df = frappe.get_meta(doctype).get_field(fieldname)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 1356, in get_meta
+    return frappe.model.meta.get_meta(doctype, cached=cached)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 71, in get_meta
+    meta = Meta(doctype)
+           ^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 125, in __init__
+    super().__init__("DocType", doctype)
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/document.py", line 126, in __init__
+    self.load_from_db()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 131, in load_from_db
+    super().load_from_db()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/document.py", line 179, in load_from_db
+    frappe.throw(
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 621, in throw
+    msgprint(
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 586, in msgprint
+    _raise_exception()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 537, in _raise_exception
+    raise exc
+frappe.exceptions.DoesNotExistError: DocType System Settings not found
+2026-08-09 15:24:44,742 ERROR scheduler Exception in Enqueue Events for Site everyonecanmake.localhost
+Traceback (most recent call last):
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 99, in enqueue_events_for_site
+    if is_scheduler_inactive():
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 143, in is_scheduler_inactive
+    if is_scheduler_disabled(verbose=verbose):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 156, in is_scheduler_disabled
+    frappe.db.get_single_value("System Settings", "enable_scheduler")
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/database/database.py", line 845, in get_single_value
+    df = frappe.get_meta(doctype).get_field(fieldname)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 1356, in get_meta
+    return frappe.model.meta.get_meta(doctype, cached=cached)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 71, in get_meta
+    meta = Meta(doctype)
+           ^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 125, in __init__
+    super().__init__("DocType", doctype)
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/document.py", line 126, in __init__
+    self.load_from_db()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 131, in load_from_db
+    super().load_from_db()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/document.py", line 179, in load_from_db
+    frappe.throw(
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 621, in throw
+    msgprint(
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 586, in msgprint
+    _raise_exception()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 537, in _raise_exception
+    raise exc
+frappe.exceptions.DoesNotExistError: DocType System Settings not found
+2026-08-09 15:25:44,783 ERROR scheduler Exception in Enqueue Events for Site everyonecanmake.localhost
+Traceback (most recent call last):
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 99, in enqueue_events_for_site
+    if is_scheduler_inactive():
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 143, in is_scheduler_inactive
+    if is_scheduler_disabled(verbose=verbose):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 156, in is_scheduler_disabled
+    frappe.db.get_single_value("System Settings", "enable_scheduler")
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/database/database.py", line 845, in get_single_value
+    df = frappe.get_meta(doctype).get_field(fieldname)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 1356, in get_meta
+    return frappe.model.meta.get_meta(doctype, cached=cached)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 71, in get_meta
+    meta = Meta(doctype)
+           ^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 125, in __init__
+    super().__init__("DocType", doctype)
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/document.py", line 126, in __init__
+    self.load_from_db()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 131, in load_from_db
+    super().load_from_db()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/document.py", line 179, in load_from_db
+    frappe.throw(
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 621, in throw
+    msgprint(
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 586, in msgprint
+    _raise_exception()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 537, in _raise_exception
+    raise exc
+frappe.exceptions.DoesNotExistError: DocType System Settings not found
+2026-08-09 15:26:44,851 ERROR scheduler Exception in Enqueue Events for Site everyonecanmake.localhost
+Traceback (most recent call last):
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 99, in enqueue_events_for_site
+    if is_scheduler_inactive():
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 143, in is_scheduler_inactive
+    if is_scheduler_disabled(verbose=verbose):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 156, in is_scheduler_disabled
+    frappe.db.get_single_value("System Settings", "enable_scheduler")
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/database/database.py", line 845, in get_single_value
+    df = frappe.get_meta(doctype).get_field(fieldname)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 1356, in get_meta
+    return frappe.model.meta.get_meta(doctype, cached=cached)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 71, in get_meta
+    meta = Meta(doctype)
+           ^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 125, in __init__
+    super().__init__("DocType", doctype)
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/document.py", line 126, in __init__
+    self.load_from_db()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 131, in load_from_db
+    super().load_from_db()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/document.py", line 179, in load_from_db
+    frappe.throw(
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 621, in throw
+    msgprint(
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 586, in msgprint
+    _raise_exception()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 537, in _raise_exception
+    raise exc
+frappe.exceptions.DoesNotExistError: DocType System Settings not found
+2026-08-09 15:27:44,907 ERROR scheduler Exception in Enqueue Events for Site everyonecanmake.localhost
+Traceback (most recent call last):
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 99, in enqueue_events_for_site
+    if is_scheduler_inactive():
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 143, in is_scheduler_inactive
+    if is_scheduler_disabled(verbose=verbose):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 156, in is_scheduler_disabled
+    frappe.db.get_single_value("System Settings", "enable_scheduler")
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/database/database.py", line 845, in get_single_value
+    df = frappe.get_meta(doctype).get_field(fieldname)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 1356, in get_meta
+    return frappe.model.meta.get_meta(doctype, cached=cached)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 71, in get_meta
+    meta = Meta(doctype)
+           ^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 125, in __init__
+    super().__init__("DocType", doctype)
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/document.py", line 126, in __init__
+    self.load_from_db()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 131, in load_from_db
+    super().load_from_db()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/document.py", line 179, in load_from_db
+    frappe.throw(
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 621, in throw
+    msgprint(
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 586, in msgprint
+    _raise_exception()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 537, in _raise_exception
+    raise exc
+frappe.exceptions.DoesNotExistError: DocType System Settings not found
+2026-08-09 15:28:44,965 ERROR scheduler Exception in Enqueue Events for Site everyonecanmake.localhost
+Traceback (most recent call last):
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 99, in enqueue_events_for_site
+    if is_scheduler_inactive():
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 143, in is_scheduler_inactive
+    if is_scheduler_disabled(verbose=verbose):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 156, in is_scheduler_disabled
+    frappe.db.get_single_value("System Settings", "enable_scheduler")
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/database/database.py", line 845, in get_single_value
+    df = frappe.get_meta(doctype).get_field(fieldname)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 1356, in get_meta
+    return frappe.model.meta.get_meta(doctype, cached=cached)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 71, in get_meta
+    meta = Meta(doctype)
+           ^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 125, in __init__
+    super().__init__("DocType", doctype)
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/document.py", line 126, in __init__
+    self.load_from_db()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 131, in load_from_db
+    super().load_from_db()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/document.py", line 179, in load_from_db
+    frappe.throw(
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 621, in throw
+    msgprint(
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 586, in msgprint
+    _raise_exception()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 537, in _raise_exception
+    raise exc
+frappe.exceptions.DoesNotExistError: DocType System Settings not found
+2026-08-09 15:29:44,997 ERROR scheduler Exception in Enqueue Events for Site everyonecanmake.localhost
+Traceback (most recent call last):
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 99, in enqueue_events_for_site
+    if is_scheduler_inactive():
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 143, in is_scheduler_inactive
+    if is_scheduler_disabled(verbose=verbose):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/utils/scheduler.py", line 156, in is_scheduler_disabled
+    frappe.db.get_single_value("System Settings", "enable_scheduler")
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/database/database.py", line 845, in get_single_value
+    df = frappe.get_meta(doctype).get_field(fieldname)
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 1356, in get_meta
+    return frappe.model.meta.get_meta(doctype, cached=cached)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 71, in get_meta
+    meta = Meta(doctype)
+           ^^^^^^^^^^^^^
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 125, in __init__
+    super().__init__("DocType", doctype)
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/document.py", line 126, in __init__
+    self.load_from_db()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/meta.py", line 131, in load_from_db
+    super().load_from_db()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/model/document.py", line 179, in load_from_db
+    frappe.throw(
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 621, in throw
+    msgprint(
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 586, in msgprint
+    _raise_exception()
+  File "/Users/makermurtaza/Desktop/EveryoneCanMake/apps/frappe/frappe/__init__.py", line 537, in _raise_exception
+    raise exc
+frappe.exceptions.DoesNotExistError: DocType System Settings not found
