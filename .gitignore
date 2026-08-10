@@ -1,0 +1,55 @@
+# macOS system files
+.DS_Store
+**/.DS_Store
+
+# Frappe/Bench development artifacts
+dump.rdb
+logs/
+*.log
+*.log.*
+
+# Local site configuration (development)
+sites/*/site_config.json
+sites/*/.test_log
+sites/*/logs/
+sites/fabinabox.localhost/
+
+# Frappe Procfiles (local development)
+Procfile.dev
+Procfile.nosocketio
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment files
+.env
+.env.local
+
+# Frappe/ERPNext specific
+config/
+private/
+public/
+sites/*/public/
+.noproc
