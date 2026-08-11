@@ -53,3 +53,8 @@ private/
 public/
 sites/*/public/
 .noproc
+
+# Bench-managed apps (cloned/managed independently, not vendored into this repo)
+apps/frappe/
+apps/lms/
+apps/ecanmake/
