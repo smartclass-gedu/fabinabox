@@ -19,15 +19,17 @@ The system is built **on top of the native Frappe LMS**, not as a replacement. I
 
 ## App & Site Topology
 
-### Real Implementation
-- **Custom app:** `apps/everyone_can_make/` (module name: "Everyone Can Make")
-  - Path to doctypes: `apps/everyone_can_make/everyone_can_make/everyone_can_make/doctype/`
-  - 23 doctypes implemented (9 standalone + 14 child tables)
-- **Native LMS app:** `apps/lms/`
-  - Pre-installed Frappe LMS; owns `Course`, `Course Lesson`, `Chapter`, `Batch`, `Quiz`, `Assignment`, `Certificate`, `skills`, `user_skill`, etc.
+### Bench-Managed Apps (not tracked by fabinabox repo)
+The main `fabinabox` repo tracks only **sites/** configuration and documentation, following standard Frappe Bench convention. All app source code is cloned/managed independently:
 
-### Red Herring
-- **`apps/ecanmake/`** — untracked, empty directory in git. **Do not edit or add doctypes here.** The real app is `apps/everyone_can_make`.
+- **Frappe framework** (`apps/frappe/`): Upstream app, installed/updated via bench CLI; remote: `frappe/frappe`
+- **Frappe LMS** (`apps/lms/`): Upstream app, installed/updated via bench; includes `Course`, `Course Lesson`, `Chapter`, `Batch`, `Quiz`, `Assignment`, `Certificate`, `skills`, `user_skill` doctypes
+- **Custom app** (`apps/ecanmake/`): Your FabInABox custom app, managed as a **separate git repository**
+  - GitHub: `smartclass-gedu/ecanmake`
+  - Frappe module name: "Everyone Can Make"
+  - Path to doctypes: `apps/ecanmake/ecanmake/ecanmake/doctype/`
+  - 23 doctypes implemented (9 standalone + 14 child tables)
+  - Cloned into `apps/` via bench; edits are committed/pushed independently to `smartclass-gedu/ecanmake`
 
 ---
 
@@ -53,14 +55,14 @@ The system is built **on top of the native Frappe LMS**, not as a replacement. I
 - **`Course Chapter`**, **`LMS Batch`**, **`LMS Quiz`**, **`LMS Assignment`**, **`LMS Certificate`**
 - **`skills`**, **`user_skill`** — LMS's native skill tracking (note: conceptually adjacent to `Skill Domain` in FabInABox but not unified yet)
 
-### FabInABox custom app owns these doctypes:
+### FabInABox custom app (ecanmake) owns these doctypes:
 - **`Atomic Learning`** (design doc calls this "Lesson") — wraps LMS's `Course Lesson` with FabInABox metadata
   - Links to LMS via: `lesson_title` (Link → "Course Lesson", required)
   - Adds FabInABox fields: `lesson_code`, `duration_hours`, `duration_minutes`, `difficulty_level`, `learning_objectives` (child table), `materials_list`, `equipment_required`, `prerequisites`, etc.
   - **Purpose:** Extend LMS's lessons with FabInABox-specific attributes (equipment, prerequisites, material tracking) without duplicating the core lesson entity
   - **Why not called "Course Lesson"?** To avoid name collision with LMS's existing doctype and make the wrapping relationship explicit
 
-**Key principle:** If you're tempted to create a doctype in `everyone_can_make` with a name LMS already uses (like `Course Lesson`, `Course Chapter`, `Quiz`), stop — instead, create a wrapper/linker doctype (like `Atomic Learning`) that references the LMS doctype and layers on FabInABox-specific fields.
+**Key principle:** If you're tempted to create a doctype in the `ecanmake` app with a name LMS already uses (like `Course Lesson`, `Course Chapter`, `Quiz`), stop — instead, create a wrapper/linker doctype (like `Atomic Learning`) that references the LMS doctype and layers on FabInABox-specific fields.
 
 ---
 
@@ -166,7 +168,7 @@ FabInABox Custom App
 - **Implication:** Phase 4+ features (Learner Progress, skill unlocking logic) will need to traverse Course Outcome ← Outcome Lesson ← Atomic Learning to determine prerequisites & skill requirements; direct lesson→skill link would simplify queries
 
 ### 2. `lab_equipment.py` Stale Code Comment
-- **File:** `apps/everyone_can_make/everyone_can_make/everyone_can_make/doctype/lab_equipment/lab_equipment.py`
+- **File:** `apps/ecanmake/ecanmake/ecanmake/doctype/lab_equipment/lab_equipment.py`
 - **Current state:** Just `pass` with a docstring: "Stub for Phase 1... Phase 2 will add full fields"
 - **Reality:** `lab_equipment.json` already has all Phase 2 fields (category, location, is_bookable, hourly_rate, requires_training, etc.)
 - **Action:** Update the `.py` controller docstring or add validation/computed fields if needed (currently no business logic)
@@ -200,18 +202,19 @@ These are needed for tracking user mastery, prerequisite unlocking, and learner 
 ✅ When adding a field, check first if it belongs in LMS (Course Lesson) or in FabInABox's wrapper (Atomic Learning)  
 
 ### DON'T
-❌ **Never** create a new doctype named `Course Lesson`, `Course Chapter`, `LMS Course`, `Quiz`, `Batch`, `Certificate`, `skills`, or other LMS-reserved names in `everyone_can_make`  
+❌ **Never** create a new doctype named `Course Lesson`, `Course Chapter`, `LMS Course`, `Quiz`, `Batch`, `Certificate`, `skills`, or other LMS-reserved names in the `ecanmake` app  
 ❌ Don't duplicate LMS entity definitions — extend via Links and child tables instead  
 ❌ Don't leave stale "Phase X stub" comments in controller code — either implement the phase or remove the comment  
-❌ Don't edit `apps/ecanmake/` — it's a stray directory; all real doctypes are in `apps/everyone_can_make/`  
+❌ Don't commit app source changes to the **fabinabox** repo; all `ecanmake` edits belong in the **smartclass-gedu/ecanmake** repo  
 
 ---
 
 ## Quick Links
 
 - **Design doc:** `frappe_schema_design.md` (root)
-- **Custom app home:** `apps/everyone_can_make/`
-- **Doctype folder:** `apps/everyone_can_make/everyone_can_make/everyone_can_make/doctype/`
+- **Custom app home (ecanmake):** `apps/ecanmake/`
+- **Doctype folder:** `apps/ecanmake/ecanmake/ecanmake/doctype/`
+- **Custom app repo:** `https://github.com/smartclass-gedu/ecanmake`
 - **Frappe LMS (native):** `apps/lms/` (do not modify for FabInABox features — extend instead)
 
 ---
