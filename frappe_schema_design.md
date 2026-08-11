@@ -2,7 +2,10 @@
 
 **Author:** Murtaza (makermurtaza@bitandbrick.com)  
 **Date:** August 2026  
+**Last Updated:** August 11, 2026 (Phase 1 simplification)  
 **Model:** FabInABox (Individual + School Booking)
+
+**⚠️ Note (August 11, 2026):** Phase 1 Learning Architecture simplified. Removed child table doctypes (Lesson Objective, Lesson Prerequisite, Lesson Equipment, Lesson Material, Outcome Lesson). Atomic Learning now serves as a thin metadata wrapper over LMS's Course Lesson. Skills tracked via Course Outcome → Outcome Skill.
 
 ---
 
@@ -19,102 +22,35 @@ This schema enables:
 
 ## Part 1: Learning Architecture
 
-### 1.1 Core Learning Doctype: `Lesson`
+### 1.1 Core Learning Doctype: `Atomic Learning` (Lesson Wrapper)
 
-**Purpose:** Reusable teaching unit that can be mixed into multiple course outcomes.
+**Purpose:** Thin wrapper around LMS's `Course Lesson` that adds FabInABox-specific metadata tracking.
+
+**Note (August 2026):** Simplified to core metadata only. Child tables (Lesson Objective, Prerequisite, Equipment, Material) removed to streamline the data model. Skills are now tracked at the Course Outcome level via Outcome Skill.
 
 ```python
 {
-  "doctype": "Lesson",
+  "doctype": "Atomic Learning",
   "fields": [
-    # Basic Info
-    {"fieldname": "lesson_title", "fieldtype": "Data", "label": "Lesson Title", "reqd": 1},
-    {"fieldname": "lesson_code", "fieldtype": "Data", "label": "Unique Code (e.g., LAB-ARDUINO-01)", "reqd": 1, "unique": 1},
-    {"fieldname": "description", "fieldtype": "Small Text", "label": "Short Description"},
+    # Core Reference
+    {"fieldname": "lesson_title", "fieldtype": "Link", "label": "Course Lesson", "options": "Course Lesson", "reqd": 1},
+    # Links to native Frappe LMS Course Lesson
     
-    # Skill Classification
-    {"fieldname": "skill_section", "fieldtype": "Section Break", "label": "Skill Classification"},
-    {"fieldname": "skill_domain", "fieldtype": "Link", "label": "Skill Domain", "options": "Skill Domain", "reqd": 1},
-    # e.g., "Electronics", "Fabrication", "Design", "Software"
+    # Metadata
+    {"fieldname": "lesson_code", "fieldtype": "Data", "label": "Lesson Code", "reqd": 1, "unique": 1},
+    {"fieldname": "description", "fieldtype": "Text", "label": "Description"},
     
-    {"fieldname": "learning_objectives", "fieldtype": "Table", "label": "Learning Objectives", "childtable": "Lesson Objective"},
-    # Each objective is a micro-skill (e.g., "Read digital schematics", "Solder joints")
+    # Duration
+    {"fieldname": "duration_section", "fieldtype": "Section Break", "label": "Duration"},
+    {"fieldname": "duration_hours", "fieldtype": "Int", "label": "Duration (hours)", "default": 1},
+    {"fieldname": "duration_minutes", "fieldtype": "Int", "label": "Duration (minutes)", "default": 0},
     
-    # Content & Sequencing
-    {"fieldname": "content_section", "fieldtype": "Section Break", "label": "Content"},
-    {"fieldname": "difficulty_level", "fieldtype": "Select", "options": "Beginner\nIntermediate\nAdvanced", "default": "Beginner"},
-    {"fieldname": "estimated_duration_minutes", "fieldtype": "Int", "label": "Duration (min)"},
-    {"fieldname": "prerequisites", "fieldtype": "Table", "label": "Prerequisite Lessons", "childtable": "Lesson Prerequisite"},
+    # Level
+    {"fieldname": "difficulty_level", "fieldtype": "Select", "options": "\nBeginner\nIntermediate\nAdvanced"},
     
-    {"fieldname": "lesson_type", "fieldtype": "Select", "options": "Concept\nHands-On\nChallenge\nIntegration", "reqd": 1},
-    {"fieldname": "content_url", "fieldtype": "Data", "label": "Video/Content URL (Vimeo, YouTube, etc.)"},
-    
-    # Resources Required
-    {"fieldname": "resources_section", "fieldtype": "Section Break", "label": "Resources"},
-    {"fieldname": "equipment_required", "fieldtype": "Table", "label": "Equipment Needed", "childtable": "Lesson Equipment"},
-    {"fieldname": "materials_list", "fieldtype": "Table", "label": "Materials/Consumables", "childtable": "Lesson Material"},
-    {"fieldname": "instructor_time_hours", "fieldtype": "Float", "label": "Instructor Time (hours)"},
-    
-    # Assessment
-    {"fieldname": "assessment_section", "fieldtype": "Section Break", "label": "Assessment"},
-    {"fieldname": "has_quiz", "fieldtype": "Check", "label": "Has Knowledge Check"},
-    {"fieldname": "quiz_link", "fieldtype": "Link", "options": "Quiz", "label": "Linked Quiz"},
-    {"fieldname": "mastery_threshold", "fieldtype": "Percent", "label": "Mastery % (default 80)", "default": 80},
-    {"fieldname": "project_deliverable", "fieldtype": "Data", "label": "Project Deliverable (if any)"},
-    
-    # Meta
-    {"fieldname": "meta_section", "fieldtype": "Section Break", "label": "Meta"},
-    {"fieldname": "status", "fieldtype": "Select", "options": "Draft\nPublished\nArchived"},
-    {"fieldname": "created_by_instructor", "fieldtype": "Link", "options": "User"},
-    {"fieldname": "last_updated", "fieldtype": "Datetime"},
-  ]
-}
-```
-
-**Child Table: `Lesson Objective`**
-```python
-{
-  "doctype": "Lesson Objective",
-  "fields": [
-    {"fieldname": "objective", "fieldtype": "Data", "label": "Objective", "reqd": 1},
-    # e.g., "Solder through-hole components"
-    {"fieldname": "level", "fieldtype": "Select", "options": "Recall\nUnderstand\nApply\nAnalyze\nEvaluate"},
-    # Bloom's taxonomy for rigor
-  ]
-}
-```
-
-**Child Table: `Lesson Prerequisite`**
-```python
-{
-  "doctype": "Lesson Prerequisite",
-  "fields": [
-    {"fieldname": "prerequisite_lesson", "fieldtype": "Link", "options": "Lesson", "reqd": 1},
-    {"fieldname": "mastery_required", "fieldtype": "Check", "label": "Require Mastery (not just completion)", "default": 1},
-  ]
-}
-```
-
-**Child Table: `Lesson Equipment`**
-```python
-{
-  "doctype": "Lesson Equipment",
-  "fields": [
-    {"fieldname": "equipment_item", "fieldtype": "Link", "options": "Lab Equipment", "reqd": 1},
-    {"fieldname": "quantity_per_learner", "fieldtype": "Float", "label": "Qty/Learner"},
-    {"fieldname": "total_session_hours", "fieldtype": "Float", "label": "Machine Time (hours)"},
-  ]
-}
-```
-
-**Child Table: `Lesson Material`**
-```python
-{
-  "doctype": "Lesson Material",
-  "fields": [
-    {"fieldname": "material_item", "fieldtype": "Link", "options": "Item", "reqd": 1},
-    {"fieldname": "qty_per_learner", "fieldtype": "Float"},
-    {"fieldname": "unit", "fieldtype": "Link", "options": "UOM"},
+    # Status
+    {"fieldname": "status_section", "fieldtype": "Section Break", "label": "Status"},
+    {"fieldname": "status", "fieldtype": "Select", "options": "\nDraft\nPublished\nArchived", "default": "Draft"},
   ]
 }
 ```
@@ -167,10 +103,6 @@ This schema enables:
     {"fieldname": "description", "fieldtype": "Text", "label": "What learners will do"},
     {"fieldname": "learning_outcomes_text", "fieldtype": "Text", "label": "Learning Outcomes (bullet list)"},
     
-    # Composition
-    {"fieldname": "composition_section", "fieldtype": "Section Break", "label": "Lesson Composition"},
-    {"fieldname": "lessons", "fieldtype": "Table", "label": "Lessons in This Outcome", "childtable": "Outcome Lesson"},
-    
     # Metadata
     {"fieldname": "difficulty_level", "fieldtype": "Select", "options": "Beginner\nIntermediate\nAdvanced"},
     {"fieldname": "total_hours", "fieldtype": "Float", "label": "Total Duration (hours)", "read_only": 1},
@@ -190,19 +122,6 @@ This schema enables:
     # Status
     {"fieldname": "status", "fieldtype": "Select", "options": "Draft\nPublished\nArchived"},
     {"fieldname": "created_by", "fieldtype": "Link", "options": "User"},
-  ]
-}
-```
-
-**Child Table: `Outcome Lesson`**
-```python
-{
-  "doctype": "Outcome Lesson",
-  "fields": [
-    {"fieldname": "lesson", "fieldtype": "Link", "options": "Lesson", "reqd": 1},
-    {"fieldname": "sequence_order", "fieldtype": "Int", "label": "Day/Order", "reqd": 1},
-    {"fieldname": "duration_override", "fieldtype": "Float", "label": "Duration Override (min)", "default": 0},
-    # 0 = use lesson's default
   ]
 }
 ```
@@ -799,18 +718,13 @@ Reports needed:
 └─────────────────────────────────────────────────────────────┘
 
 Skill Domain
-  ├── Lesson (many) [has skill_domain]
+  ├── Outcome Skill (many) [defined in outcomes]
   └── Instructor Skill (many) [certifies]
 
-Lesson
-  ├── Lesson Objective (many)
-  ├── Lesson Prerequisite (self-referential)
-  ├── Lesson Equipment (references Lab Equipment)
-  ├── Lesson Material (references Item)
-  └── Outcome Lesson (in Course Outcome)
+Atomic Learning (Lesson Wrapper)
+  └── Course Lesson (LMS) [wraps]
 
 Course Outcome
-  ├── Outcome Lesson (many) [composes Lessons]
   ├── Outcome Skill (many) [requires Skill Domains]
   └── Learner Progress (many) [tracks progress]
 
@@ -829,7 +743,6 @@ Lab Location
 
 Lab Equipment
   ├── Asset Lifecycle (1-1) [tracked by]
-  ├── Lesson Equipment (references)
   ├── Resource Booking (booked in)
   └── Instructor Certification (trains on)
 
@@ -864,11 +777,11 @@ School
 
 ## Part 9: Implementation Roadmap
 
-### Phase 1: Core Learning (Week 1-2)
-- [ ] Create `Skill Domain` (master data)
-- [ ] Create `Lesson` + child tables
-- [ ] Create `Course Outcome` + composition logic
-- [ ] Build Frappe LMS integration
+### Phase 1: Core Learning (Week 1-2)  [COMPLETED - SIMPLIFIED Aug 2026]
+- [x] Create `Skill Domain` (master data)
+- [x] Create `Atomic Learning` (LMS wrapper)
+- [x] Create `Course Outcome` with Outcome Skill child table
+- [x] Build Frappe LMS integration (Course Lesson → Atomic Learning)
 
 ### Phase 2: Resources (Week 3)
 - [ ] Create `Lab Equipment` & `Lab Location`
