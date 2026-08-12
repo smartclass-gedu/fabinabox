@@ -29,7 +29,6 @@ Wrap LMS courses with FabInABox features via `ecanmake` custom app:
 
 ### Key Custom Doctypes
 - **Atomic Learning**: Wraps LMS `Course Lesson` → adds `lesson_code`, duration, difficulty level, description
-- **Course Outcome**: Tracks learning outcomes with difficulty levels, target audience, and skill domains
 - **Skill Domain**: Master categories (Electronics, Fabrication, Design, Software)
 - **Lab Equipment**: Bookable equipment with location, hourly rates, training requirements
 - **Lab Location**: Physical labs/makerspaces with hours
@@ -51,9 +50,8 @@ Wrap LMS courses with FabInABox features via `ecanmake` custom app:
 1. Create a **Course** in Frappe LMS web interface
 2. Add **Chapters** and **Lessons** with content
 3. Optionally wrap lessons with `Atomic Learning` to track lesson metadata (code, duration, difficulty)
-4. Create `Course Outcome` to define learning outcomes and required skills
-5. Set up `Lab Equipment`, `Lab Location`, `Instructor` for booking
-6. Create `Resource Booking` to handle student/school reservations
+4. Set up `Lab Equipment`, `Lab Location`, `Instructor` for booking
+5. Create `Resource Booking` to handle student/school reservations
 
 ## Reference
 - **Full schema**: `frappe_schema_design.md`

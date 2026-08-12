@@ -5,18 +5,18 @@
 **Last Updated:** August 11, 2026 (Phase 1 simplification)  
 **Model:** FabInABox (Individual + School Booking)
 
-**⚠️ Note (August 11, 2026):** Phase 1 Learning Architecture simplified. Removed child table doctypes (Lesson Objective, Lesson Prerequisite, Lesson Equipment, Lesson Material, Outcome Lesson). Atomic Learning now serves as a thin metadata wrapper over LMS's Course Lesson. Skills tracked via Course Outcome → Outcome Skill.
+**⚠️ Note (August 12, 2026):** Phase 1 Learning Architecture further simplified. Course Outcome and Outcome Skill doctypes removed (August 12, 2026) — skill tracking mechanism TBD for future phases. Atomic Learning now serves as a thin metadata wrapper over LMS's Course Lesson.
 
 ---
 
 ## Executive Summary
 
 This schema enables:
-- **Modular lessons** that compose into multiple course outcomes
-- **Skill tracking** with prerequisite unlocking
+- **Modular lessons** through Atomic Learning wrapper
 - **Resource booking** (equipment, instructor time) for individuals & schools
 - **Inventory management** with asset tracking
 - **Multi-tenant capability** for school vs. personal learner paths
+- **Skill tracking** (via Skill Domain master data; outcome-level tracking TBD in Phase 4+)
 
 ---
 
@@ -26,7 +26,7 @@ This schema enables:
 
 **Purpose:** Thin wrapper around LMS's `Course Lesson` that adds FabInABox-specific metadata tracking.
 
-**Note (August 2026):** Simplified to core metadata only. Child tables (Lesson Objective, Prerequisite, Equipment, Material) removed to streamline the data model. Skills are now tracked at the Course Outcome level via Outcome Skill.
+**Note (August 2026):** Simplified to core metadata only. Child tables (Lesson Objective, Prerequisite, Equipment, Material) removed to streamline the data model. Outcome-level skill tracking (Course Outcome → Outcome Skill) also removed in August 2026 update; skill tracking mechanism is TBD for future phases.
 
 ```python
 {
@@ -85,69 +85,7 @@ This schema enables:
 
 ---
 
-### 1.3 Course Outcome Doctype: `Course Outcome`
-
-**Purpose:** Define a specific skill/project learners achieve. Composes multiple lessons.
-
-```python
-{
-  "doctype": "Course Outcome",
-  "fields": [
-    # Basic Info
-    {"fieldname": "outcome_title", "fieldtype": "Data", "label": "Outcome Title", "reqd": 1},
-    # e.g., "Build a Smart Garden Monitor"
-    
-    {"fieldname": "outcome_code", "fieldtype": "Data", "label": "Code", "unique": 1},
-    # e.g., "ECO-001"
-    
-    {"fieldname": "description", "fieldtype": "Text", "label": "What learners will do"},
-    {"fieldname": "learning_outcomes_text", "fieldtype": "Text", "label": "Learning Outcomes (bullet list)"},
-    
-    # Metadata
-    {"fieldname": "difficulty_level", "fieldtype": "Select", "options": "Beginner\nIntermediate\nAdvanced"},
-    {"fieldname": "total_hours", "fieldtype": "Float", "label": "Total Duration (hours)", "read_only": 1},
-    # Auto-calculated from lessons
-    
-    {"fieldname": "target_audience", "fieldtype": "Data", "label": "Target: Individual/School/Both"},
-    
-    # Skills Developed
-    {"fieldname": "skills_section", "fieldtype": "Section Break", "label": "Skills Developed"},
-    {"fieldname": "skill_domains", "fieldtype": "Table", "label": "Skill Domains Covered", "childtable": "Outcome Skill"},
-    
-    # Resources Required
-    {"fieldname": "resources_section", "fieldtype": "Section Break", "label": "Resource Requirements"},
-    {"fieldname": "total_instructor_hours", "fieldtype": "Float", "read_only": 1},
-    {"fieldname": "equipment_summary", "fieldtype": "Table", "label": "Equipment Needed", "childtable": "Outcome Equipment"},
-    
-    # Status
-    {"fieldname": "status", "fieldtype": "Select", "options": "Draft\nPublished\nArchived"},
-    {"fieldname": "created_by", "fieldtype": "Link", "options": "User"},
-  ]
-}
-```
-
-**Child Table: `Outcome Skill`**
-```python
-{
-  "doctype": "Outcome Skill",
-  "fields": [
-    {"fieldname": "skill_domain", "fieldtype": "Link", "options": "Skill Domain"},
-    {"fieldname": "mastery_level", "fieldtype": "Select", "options": "Foundational\nIntermediatePractitioner\nAdvanced"},
-  ]
-}
-```
-
-**Child Table: `Outcome Equipment`**
-```python
-{
-  "doctype": "Outcome Equipment",
-  "fields": [
-    {"fieldname": "equipment_item", "fieldtype": "Link", "options": "Lab Equipment"},
-    {"fieldname": "total_hours_needed", "fieldtype": "Float"},
-    {"fieldname": "notes", "fieldtype": "Small Text"},
-  ]
-}
-```
+**Note (August 12, 2026):** Course Outcome and Outcome Skill doctypes have been removed. Skill tracking at the outcome level is TBD for Phase 4+ implementation.
 
 ---
 
@@ -412,8 +350,7 @@ Warehouses:
     
     # What is Being Booked
     {"fieldname": "resource_section", "fieldtype": "Section Break", "label": "Resources Booked"},
-    {"fieldname": "booking_purpose", "fieldtype": "Select", "options": "Course Outcome\nFree Exploration\nAdvanced Project\nMaintenance", "reqd": 1},
-    {"fieldname": "course_outcome", "fieldtype": "Link", "options": "Course Outcome", "depends_on": "eval: doc.booking_purpose == 'Course Outcome'"},
+    {"fieldname": "booking_purpose", "fieldtype": "Select", "options": "Free Exploration\nAdvanced Project\nMaintenance", "reqd": 1},
     
     {"fieldname": "resources", "fieldtype": "Table", "label": "Equipment & Time Booked", "childtable": "Booking Resource"},
     
@@ -590,9 +527,8 @@ Warehouses:
     {"fieldname": "learner", "fieldtype": "Link", "options": "User", "reqd": 1},
     {"fieldname": "full_name", "fieldtype": "Data", "fetch_from": "learner.full_name", "read_only": 1},
     
-    # Learning Path
+    # Learning Path (Note: Course Outcome dependency removed Aug 2026 — TBD for Phase 4)
     {"fieldname": "path_section", "fieldtype": "Section Break", "label": "Learning Path"},
-    {"fieldname": "course_outcome", "fieldtype": "Link", "options": "Course Outcome", "reqd": 1},
     {"fieldname": "enrollment_date", "fieldtype": "Date"},
     {"fieldname": "target_completion_date", "fieldtype": "Date"},
     {"fieldname": "status", "fieldtype": "Select", "options": "Enrolled\nIn Progress\nCompleted\nDropped", "default": "Enrolled"},
@@ -704,8 +640,7 @@ Reports needed:
 4. Revenue Analysis (bookings, materials, instructor time)
 5. Equipment Maintenance Schedule
 6. Skills Distribution (which skills taught most)
-7. Course Outcome Completion Rate
-8. School Partnership Performance
+7. School Partnership Performance
 ```
 
 ---
@@ -718,17 +653,12 @@ Reports needed:
 └─────────────────────────────────────────────────────────────┘
 
 Skill Domain
-  ├── Outcome Skill (many) [defined in outcomes]
   └── Instructor Skill (many) [certifies]
 
 Atomic Learning (Lesson Wrapper)
   └── Course Lesson (LMS) [wraps]
 
-Course Outcome
-  ├── Outcome Skill (many) [requires Skill Domains]
-  └── Learner Progress (many) [tracks progress]
-
-Learner Progress
+Learner Progress (Note: Course Outcome dependency removed Aug 2026 — TBD for Phase 4)
   ├── Lesson Completion (many) [tracks each lesson]
   └── Learner Skill (many) [demonstrates mastery]
 
@@ -763,7 +693,6 @@ Instructor Session
 
 Resource Booking
   ├── Individual User OR School [polymorphic]
-  ├── Course Outcome [optional]
   ├── Booking Resource (many) [equipment items]
   ├── Lab Location
   └── Instructor
@@ -777,10 +706,10 @@ School
 
 ## Part 9: Implementation Roadmap
 
-### Phase 1: Core Learning (Week 1-2)  [COMPLETED - SIMPLIFIED Aug 2026]
+### Phase 1: Core Learning (Week 1-2)  [COMPLETED - SIMPLIFIED Aug 2026, Further Simplified Aug 12, 2026]
 - [x] Create `Skill Domain` (master data)
 - [x] Create `Atomic Learning` (LMS wrapper)
-- [x] Create `Course Outcome` with Outcome Skill child table
+- [x] ~~Create `Course Outcome` with Outcome Skill child table~~ (Removed Aug 12, 2026 — skill tracking TBD Phase 4+)
 - [x] Build Frappe LMS integration (Course Lesson → Atomic Learning)
 
 ### Phase 2: Resources (Week 3)
@@ -810,7 +739,7 @@ School
 
 ```
 Role: Learner
-  - Can view: Own Learner Progress, enrolled Course Outcomes
+  - Can view: Own Learner Progress
   - Can book: Resources (with approval workflow)
   - Cannot: Edit lesson content, admin functions
 
@@ -865,13 +794,14 @@ Role: Admin
 ## Summary
 
 This schema supports:
-✅ **Modularity:** Mix lessons into any course outcome  
+✅ **Modular Lessons:** Atomic Learning wrapper over LMS Course Lessons  
 ✅ **FabInABox Model:** Individual + school bookings  
 ✅ **Inventory:** Track consumables & equipment  
-✅ **Skill Tracking:** Prerequisites unlock based on mastery  
+✅ **Skill Domains:** Master skill categories (Electronics, Fabrication, etc.)  
 ✅ **Multi-Location:** Support distributed labs  
 ✅ **Instructor Management:** Certifications, availability, billing  
 ✅ **Revenue Tracking:** Equipment + instructor + materials costs  
 ✅ **Scalability:** Designed for growth (1-1000+ learners)  
+⏳ **Outcome-Level Skill Tracking:** TBD for Phase 4+ (previously Course Outcome/Outcome Skill, removed Aug 2026)  
 
 **Next Step:** Start building Phase 1 in Frappe.
