@@ -28,7 +28,6 @@ Building a Frappe-based learning platform with resource booking, skill tracking,
 Wrap LMS courses with FabInABox features via `ecanmake` custom app:
 
 ### Key Custom Doctypes
-- **Atomic Learning**: Wraps LMS `Course Lesson` → adds `lesson_code`, duration, difficulty level, description
 - **Skill Domain**: Master categories (Electronics, Fabrication, Design, Software)
 - **Lab Equipment**: Bookable equipment with location, hourly rates, training requirements
 - **Lab Location**: Physical labs/makerspaces with hours
@@ -37,10 +36,10 @@ Wrap LMS courses with FabInABox features via `ecanmake` custom app:
 - **School**: Multi-tenant booking support
 
 ## Critical Principle
-**Never duplicate LMS entities.** Extend via wrappers:
-- ✅ Create `Atomic Learning` → links to LMS `Course Lesson`
-- ❌ Don't create your own `Course Lesson` doctype
-- Same for: `Course Chapter`, `Quiz`, `Batch`, `Certificate`, `skills`
+**Use LMS entities directly.** Never create FabInABox versions of LMS doctypes:
+- ✅ Link directly to LMS `Course Lesson` (e.g., `training_lesson`, `lesson_covered` fields)
+- ❌ Don't create your own `Course Lesson`, `Course Chapter`, `Quiz`, `Batch`, `Certificate`, `skills` doctypes
+- ❌ Don't create wrapper/extension doctypes for LMS entities
 
 ## Repo Boundaries
 - **fabinabox repo**: Bench config, documentation, site settings
@@ -49,8 +48,8 @@ Wrap LMS courses with FabInABox features via `ecanmake` custom app:
 ## Quick Start
 1. Create a **Course** in Frappe LMS web interface
 2. Add **Chapters** and **Lessons** with content
-3. Optionally wrap lessons with `Atomic Learning` to track lesson metadata (code, duration, difficulty)
-4. Set up `Lab Equipment`, `Lab Location`, `Instructor` for booking
+3. Set up `Lab Equipment`, `Lab Location`, `Instructor` for booking
+4. Link equipment training requirements and instructor sessions directly to LMS `Course Lesson` records
 5. Create `Resource Booking` to handle student/school reservations
 
 ## Reference

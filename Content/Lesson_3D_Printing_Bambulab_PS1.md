@@ -466,11 +466,11 @@ To **complete** the "3D Printing Fundamentals with Bambulab P1S + AMS" course:
 
 ## Integration with FabInABox Data Model
 
-### Mapping to "Atomic Learning" Doctype
+### Mapping to Frappe LMS Course Lesson
 
-This content set maps to three **Atomic Learning** doctype records (one per session):
+This content set maps to three **Course Lesson** records in Frappe LMS (one per session):
 
-#### Session 1: Atomic Learning Record
+#### Session 1: Course Lesson Record
 
 ```
 lesson_title: (Link to Course Lesson) "3D Printing Session 1 — Intro & Printer Setup"
@@ -498,9 +498,8 @@ materials (Lesson Material child table):
     Qty per Learner: 0.02 kg
     Unit: kg
 
-prerequisites (Lesson Prerequisite child table):
-  - Prerequisite Lesson: (Name of "General BitandBrick HQ Safety Orientation" Atomic Learning record, once created)
-    Mastery Required: Yes
+prerequisites (handled via Course prerequisites or sequencing):
+  - Prerequisite Lesson: "General BitandBrick HQ Safety Orientation" (native Course Lesson, to be sequenced in Course structure)
 
 status: Draft (or "Published" once tested in production)
 ```
@@ -623,17 +622,19 @@ status: Draft
 
 ## Notes for FabInABox Schema Evolution
 
-**Atomic Learning (renamed from custom Course Lesson)** now serves as the maker-space-specific extension layer on top of native Frappe LMS Course Lesson. This structure allows:
+**Course Lesson (Native Frappe LMS)** is used directly in FabInABox. No wrapper doctype (Atomic Learning) is maintained. This design simplifies the data model:
 
-- **LMS Content:** Native Course Lesson holds video, body markdown, instructor notes, and quiz (managed by LMS app)
-- **Maker-space Metadata:** Atomic Learning holds equipment, materials, duration, objectives, prerequisites, and status (managed by Everyone Can Make app)
-- **Linking:** Atomic Learning.lesson_title → Course Lesson (1-to-many; one native lesson can be referenced by multiple Atomic Learning records, e.g., if same content offered in different contexts)
+- **Lesson Content:** Native Course Lesson holds video, body markdown, instructor notes, quiz, and metadata (title, duration, difficulty)
+- **Resource Integration:** FabInABox doctypes (Lab Equipment, Instructor Session) link directly to Course Lesson
+  - `Lab Equipment.training_lesson` → Course Lesson (prerequisite training)
+  - `Instructor Session.lesson_covered` → Course Lesson (session record-keeping)
+- **No Wrapper Layer:** Eliminates duplication and simplifies queries for lesson-based workflows
 
-This separation prevents data duplication and enables clean integration between Frappe LMS and the custom booking/resource-management layer.
+This direct integration with native LMS avoids a custom metadata layer and keeps the data model lean.
 
 ---
 
-**Document Version:** 1.0  
-**Last Updated:** 2026-08-10  
+**Document Version:** 1.1  
+**Last Updated:** 2026-08-13 (Updated for direct Course Lesson usage; Atomic Learning removed)
 **Author:** FabInABox Content Team  
 **Status:** Sample Content (Draft)

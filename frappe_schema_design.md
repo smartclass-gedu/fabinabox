@@ -5,14 +5,14 @@
 **Last Updated:** August 11, 2026 (Phase 1 simplification)  
 **Model:** FabInABox (Individual + School Booking)
 
-**⚠️ Note (August 12, 2026):** Phase 1 Learning Architecture further simplified. Course Outcome and Outcome Skill doctypes removed (August 12, 2026) — skill tracking mechanism TBD for future phases. Atomic Learning now serves as a thin metadata wrapper over LMS's Course Lesson.
+**⚠️ Note (August 13, 2026):** Atomic Learning doctype removed for simplification. Lessons now link directly to LMS `Course Lesson`. Skill tracking mechanism TBD for future phases.
 
 ---
 
 ## Executive Summary
 
 This schema enables:
-- **Modular lessons** through Atomic Learning wrapper
+- **Modular lessons** via native Frappe LMS `Course Lesson`
 - **Resource booking** (equipment, instructor time) for individuals & schools
 - **Inventory management** with asset tracking
 - **Multi-tenant capability** for school vs. personal learner paths
@@ -22,38 +22,23 @@ This schema enables:
 
 ## Part 1: Learning Architecture
 
-### 1.1 Core Learning Doctype: `Atomic Learning` (Lesson Wrapper)
+### 1.1 Core Learning: Frappe LMS `Course Lesson`
 
-**Purpose:** Thin wrapper around LMS's `Course Lesson` that adds FabInABox-specific metadata tracking.
+**Purpose:** FabInABox uses LMS's native `Course Lesson` directly. No custom wrapper doctype.
 
-**Note (August 2026):** Simplified to core metadata only. Child tables (Lesson Objective, Prerequisite, Equipment, Material) removed to streamline the data model. Outcome-level skill tracking (Course Outcome → Outcome Skill) also removed in August 2026 update; skill tracking mechanism is TBD for future phases.
+**Key Fields (from LMS):**
+- `title` — Lesson name
+- `body` — Markdown content
+- `youtube` — Embedded video URL
+- `quiz_id` — Link to assessment (LMS Quiz)
+- `chapter` — Hierarchical position (Course → Chapter → Lesson)
 
-```python
-{
-  "doctype": "Atomic Learning",
-  "fields": [
-    # Core Reference
-    {"fieldname": "lesson_title", "fieldtype": "Link", "label": "Course Lesson", "options": "Course Lesson", "reqd": 1},
-    # Links to native Frappe LMS Course Lesson
-    
-    # Metadata
-    {"fieldname": "lesson_code", "fieldtype": "Data", "label": "Lesson Code", "reqd": 1, "unique": 1},
-    {"fieldname": "description", "fieldtype": "Text", "label": "Description"},
-    
-    # Duration
-    {"fieldname": "duration_section", "fieldtype": "Section Break", "label": "Duration"},
-    {"fieldname": "duration_hours", "fieldtype": "Int", "label": "Duration (hours)", "default": 1},
-    {"fieldname": "duration_minutes", "fieldtype": "Int", "label": "Duration (minutes)", "default": 0},
-    
-    # Level
-    {"fieldname": "difficulty_level", "fieldtype": "Select", "options": "\nBeginner\nIntermediate\nAdvanced"},
-    
-    # Status
-    {"fieldname": "status_section", "fieldtype": "Section Break", "label": "Status"},
-    {"fieldname": "status", "fieldtype": "Select", "options": "\nDraft\nPublished\nArchived", "default": "Draft"},
-  ]
-}
-```
+**FabInABox Integration Points:**
+- `Lab Equipment.training_lesson` → Links to `Course Lesson` for certification training
+- `Instructor Session.lesson_covered` → Links to `Course Lesson` for session record-keeping
+- Lesson-specific metadata (duration, difficulty, description) is stored **in the LMS `Course Lesson` itself**, not in a separate wrapper
+
+**Rationale (August 13, 2026):** Removed `Atomic Learning` wrapper to simplify the data model. All lesson metadata now lives in LMS, avoiding duplication and maintenance overhead.
 
 ---
 
@@ -132,7 +117,7 @@ This schema enables:
     # Certification
     {"fieldname": "certification_section", "fieldtype": "Section Break", "label": "Certification"},
     {"fieldname": "requires_training", "fieldtype": "Check", "label": "Requires Safety Training"},
-    {"fieldname": "training_lesson", "fieldtype": "Link", "options": "Lesson", "label": "Linked Training Lesson"},
+    {"fieldname": "training_lesson", "fieldtype": "Link", "options": "Course Lesson", "label": "Linked Training Lesson"},
     
     # Status & Maintenance
     {"fieldname": "status_section", "fieldtype": "Section Break", "label": "Status"},
@@ -436,7 +421,7 @@ Warehouses:
     
     # Session Details
     {"fieldname": "session_type", "fieldtype": "Select", "options": "Lesson Delivery\nHands-On Guidance\nCertification\nTroubleshooting\nAdvanced Mentoring"},
-    {"fieldname": "lesson_covered", "fieldtype": "Link", "options": "Lesson"},
+    {"fieldname": "lesson_covered", "fieldtype": "Link", "options": "Course Lesson"},
     {"fieldname": "location", "fieldtype": "Link", "options": "Lab Location"},
     
     # Notes & Outcomes
@@ -655,10 +640,10 @@ Reports needed:
 Skill Domain
   └── Instructor Skill (many) [certifies]
 
-Atomic Learning (Lesson Wrapper)
-  └── Course Lesson (LMS) [wraps]
+Course Lesson (LMS)
+  └── Instructor Session (many) [teaches in]
 
-Learner Progress (Note: Course Outcome dependency removed Aug 2026 — TBD for Phase 4)
+Learner Progress (Note: TBD for Phase 4)
   ├── Lesson Completion (many) [tracks each lesson]
   └── Learner Skill (many) [demonstrates mastery]
 
@@ -706,11 +691,11 @@ School
 
 ## Part 9: Implementation Roadmap
 
-### Phase 1: Core Learning (Week 1-2)  [COMPLETED - SIMPLIFIED Aug 2026, Further Simplified Aug 12, 2026]
+### Phase 1: Core Learning (Week 1-2)  [COMPLETED - SIMPLIFIED Aug 13, 2026]
 - [x] Create `Skill Domain` (master data)
-- [x] Create `Atomic Learning` (LMS wrapper)
+- [x] ~~Create `Atomic Learning` (LMS wrapper)~~ (Removed Aug 13, 2026 — use LMS `Course Lesson` directly)
 - [x] ~~Create `Course Outcome` with Outcome Skill child table~~ (Removed Aug 12, 2026 — skill tracking TBD Phase 4+)
-- [x] Build Frappe LMS integration (Course Lesson → Atomic Learning)
+- [x] Frappe LMS integration configured (instructors/equipment link directly to `Course Lesson`)
 
 ### Phase 2: Resources (Week 3)
 - [ ] Create `Lab Equipment` & `Lab Location`
@@ -794,7 +779,7 @@ Role: Admin
 ## Summary
 
 This schema supports:
-✅ **Modular Lessons:** Atomic Learning wrapper over LMS Course Lessons  
+✅ **Modular Lessons:** Native Frappe LMS `Course Lesson` (no wrapper)  
 ✅ **FabInABox Model:** Individual + school bookings  
 ✅ **Inventory:** Track consumables & equipment  
 ✅ **Skill Domains:** Master skill categories (Electronics, Fabrication, etc.)  
