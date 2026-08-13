@@ -43,3 +43,16 @@
 2026-08-09 16:10:54,368 Cleaning registries for queue: Users-makermurtaza-Desktop-EveryoneCanMake:long
 2026-08-09 16:10:54,427 Worker 7bdab538c15c49f7ad106f10c67790dc [PID 99278]: warm shut down requested
 2026-08-09 16:10:54,430 Unsubscribing from channel rq:pubsub:7bdab538c15c49f7ad106f10c67790dc
+2026-08-11 07:08:05,762 Worker rq:worker:1b6cfa24b9ae475483b9aa92ebf742f1 started with PID 76893, version 1.15.1
+2026-08-11 07:08:05,762 Subscribing to channel rq:pubsub:1b6cfa24b9ae475483b9aa92ebf742f1
+2026-08-11 07:08:05,766 *** Listening on Users-makermurtaza-Desktop-fabinabox:short, Users-makermurtaza-Desktop-fabinabox:default, Users-makermurtaza-Desktop-fabinabox:long...
+2026-08-11 07:08:05,768 Cleaning registries for queue: Users-makermurtaza-Desktop-fabinabox:short
+2026-08-11 07:08:05,771 Cleaning registries for queue: Users-makermurtaza-Desktop-fabinabox:default
+2026-08-11 07:08:05,772 Cleaning registries for queue: Users-makermurtaza-Desktop-fabinabox:long
+2026-08-11 07:08:05,778 Users-makermurtaza-Desktop-fabinabox:long: frappe.utils.background_jobs.execute_job(event=None, is_async=True, job_name='frappe.search.website_search.build_index_for_all_routes', kwargs={}, method=<function build_index_for_all_routes at 0x10adba090>, site='fabinabox.localhost', user='Administrator') (fabinabox.localhost::9de902ba-17aa-4417-bacb-428e8100b24b)
+2026-08-11 07:08:05,820 Worker 1b6cfa24b9ae475483b9aa92ebf742f1 [PID 76893]: warm shut down requested
+Retrieving Routes                   : [=                                       ] 3%
+2026-08-11 07:08:09,588 Users-makermurtaza-Desktop-fabinabox:long: Job OK (fabinabox.localhost::9de902ba-17aa-4417-bacb-428e8100b24b)
+2026-08-11 07:08:09,588 Result is kept for 600 seconds
+2026-08-11 07:08:09,605 Worker rq:worker:1b6cfa24b9ae475483b9aa92ebf742f1: stopping on request
+2026-08-11 07:08:09,607 Unsubscribing from channel rq:pubsub:1b6cfa24b9ae475483b9aa92ebf742f1
