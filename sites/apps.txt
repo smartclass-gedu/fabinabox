@@ -1,2 +1,4 @@
 frappe
+payments
+everyone_can_make
 lms
